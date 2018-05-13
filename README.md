@@ -1,9 +1,5 @@
 # Emoji
 
-[![Build Status](https://travis-ci.org/vanniktech/Emoji.svg?branch=master)](https://travis-ci.org/vanniktech/Emoji?branch=master)
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Emoji-green.svg?style=true)](https://android-arsenal.com/details/1/3287)
-[![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
-
 A simple library to add Emoji support to your Android app. In a PopupWindow Emojis can be chosen. In order to edit and display text with Emojis this library provides public APIs: [`EmojiEditText`](emoji/src/main/java/com/vanniktech/emoji/EmojiEditText.java), [`EmojiTextView`](emoji/src/main/java/com/vanniktech/emoji/EmojiTextView.java) & [`EmojiButton`](emoji/src/main/java/com/vanniktech/emoji/EmojiButton.java).
 
 The library has 4 different providers to choose from ([iOS](#ios-emojis), [EmojiOne](#emojione), [Google](#google) & [Twitter](#twitter)).
@@ -21,7 +17,8 @@ compile 'com.vanniktech:emoji-ios:0.5.1'
 And install the provider (preferably in your Application class):
 
 ```java
-EmojiManager.install(new IosEmojiProvider()); // This line needs to be executed before any usage of EmojiTextView, EmojiEditText or EmojiButton.
+// This line needs to be executed before any usage of EmojiTextView, EmojiEditText or EmojiButton.
+EmojiManager.install(new IosEmojiProvider());
 ```
 
 ## EmojiOne
@@ -37,7 +34,8 @@ compile 'com.vanniktech:emoji-one:0.5.1'
 And install the provider (preferably in your Application class):
 
 ```java
-EmojiManager.install(new EmojiOneProvider()); // This line needs to be executed before any usage of EmojiTextView, EmojiEditText or EmojiButton.
+// This line needs to be executed before any usage of EmojiTextView, EmojiEditText or EmojiButton.
+EmojiManager.install(new EmojiOneProvider());
 ```
 
 ## Google
@@ -53,7 +51,8 @@ compile 'com.vanniktech:emoji-google:0.5.1'
 And install the provider (preferably in your Application class):
 
 ```java
-EmojiManager.install(new GoogleEmojiProvider()); // This line needs to be executed before any usage of EmojiTextView, EmojiEditText or EmojiButton.
+// This line needs to be executed before any usage of EmojiTextView, EmojiEditText or EmojiButton.
+EmojiManager.install(new GoogleEmojiProvider());
 ```
 
 ## Twitter
@@ -69,7 +68,8 @@ compile 'com.vanniktech:emoji-twitter:0.5.1'
 And install the provider (preferably in your Application class):
 
 ```java
-EmojiManager.install(new TwitterEmojiProvider()); // This line needs to be executed before any usage of EmojiTextView, EmojiEditText or EmojiButton.
+// This line needs to be executed before any usage of EmojiTextView, EmojiEditText or EmojiButton.
+EmojiManager.install(new TwitterEmojiProvider());
 ```
 
 ### Custom Emojis
@@ -82,7 +82,17 @@ All of the core API lays in, which is being pulled in automatically by the provi
 compile 'com.vanniktech:emoji:0.5.1'
 ```
 
-### Inserting Emojis
+### Custom EditText
+
+If you want to add the emoji support to your existing `EditText`, you only have to
+`implement` `EmojiEditTextInterface`. An example can be seen on the default `EditText`
+implementation: `EmojiEditText`.
+
+Keep in mind that this custom class must be a subclass of `android.view.View`.
+
+---
+
+## Inserting Emojis
 
 Declare your [`EmojiEditText`](emoji/src/main/java/com/vanniktech/emoji/EmojiEditText.java) in your layout xml file.
 

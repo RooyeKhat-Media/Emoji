@@ -21,7 +21,7 @@ import static com.vanniktech.emoji.Utils.checkNotNull;
 /**
  * EmojiManager where an EmojiProvider can be installed for further usage.
  */
-public final class EmojiManager {
+@SuppressWarnings("PMD.ForLoopCanBeForeach") public final class EmojiManager {
   private static final EmojiManager INSTANCE = new EmojiManager();
   private static final int GUESSED_UNICODE_AMOUNT = 3000;
   private static final int GUESSED_TOTAL_PATTERN_LENGTH = GUESSED_UNICODE_AMOUNT * 4;
@@ -71,7 +71,7 @@ public final class EmojiManager {
     // No instances apart from singleton.
   }
 
-  static EmojiManager getInstance() {
+  public static EmojiManager getInstance() {
     return INSTANCE;
   }
 
@@ -134,16 +134,42 @@ public final class EmojiManager {
     INSTANCE.emojiRepetitivePattern = Pattern.compile('(' + regex + ")+");
   }
 
-  static void destroy() {
+  /**
+   * Destroys the EmojiManager. This means that all internal data structures are released as well as
+   * all data associated with installed {@link Emoji}s. For the existing {@link EmojiProvider}s this
+   * means the memory-heavy emoji sheet.
+   *
+   * @see #destroy()
+   */
+  public static void destroy() {
+    release();
+
     INSTANCE.emojiMap.clear();
     INSTANCE.categories = null;
     INSTANCE.emojiPattern = null;
     INSTANCE.emojiRepetitivePattern = null;
+    INSTANCE.emojiReplacer = null;
   }
 
-  static void replaceWithImages(final Context context, final Spannable text, final float emojiSize, final float defaultEmojiSize) {
-    final EmojiManager emojiManager = EmojiManager.getInstance();
-    emojiManager.emojiReplacer.replaceWithImages(context, text, emojiSize, defaultEmojiSize, DEFAULT_EMOJI_REPLACER);
+  /**
+   * Releases all data associated with installed {@link Emoji}s. For the existing {@link EmojiProvider}s this
+   * means the memory-heavy emoji sheet.
+   *
+   * In contrast to {@link #destroy()}, this does <b>not</b> destroy the internal
+   * data structures and thus, you do not need to {@link #install(EmojiProvider)} again before using the EmojiManager.
+   *
+   * @see #destroy()
+   */
+  public static void release() {
+    for (final Emoji emoji : INSTANCE.emojiMap.values()) {
+      emoji.destroy();
+    }
+  }
+
+  public void replaceWithImages(final Context context, final Spannable text, final float emojiSize, final float defaultEmojiSize) {
+    verifyInstalled();
+
+    emojiReplacer.replaceWithImages(context, text, emojiSize, defaultEmojiSize, DEFAULT_EMOJI_REPLACER);
   }
 
   EmojiCategory[] getCategories() {

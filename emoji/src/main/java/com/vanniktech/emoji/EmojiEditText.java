@@ -11,7 +11,8 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import com.vanniktech.emoji.emoji.Emoji;
 
-@SuppressWarnings("CPD-START") public class EmojiEditText extends AppCompatEditText {
+/** Reference implementation for an EditText with emoji support. */
+@SuppressWarnings("CPD-START") public class EmojiEditText extends AppCompatEditText implements EmojiEditTextInterface {
   private float emojiSize;
 
   public EmojiEditText(final Context context) {
@@ -46,15 +47,19 @@ import com.vanniktech.emoji.emoji.Emoji;
   @Override @CallSuper protected void onTextChanged(final CharSequence text, final int start, final int lengthBefore, final int lengthAfter) {
     final Paint.FontMetrics fontMetrics = getPaint().getFontMetrics();
     final float defaultEmojiSize = fontMetrics.descent - fontMetrics.ascent;
-    EmojiManager.replaceWithImages(getContext(), getText(), emojiSize, defaultEmojiSize);
+    EmojiManager.getInstance().replaceWithImages(getContext(), getText(), emojiSize, defaultEmojiSize);
   }
 
-  @CallSuper public void backspace() {
+  @Override public float getEmojiSize() {
+    return emojiSize;
+  }
+
+  @Override @CallSuper public void backspace() {
     final KeyEvent event = new KeyEvent(0, 0, 0, KeyEvent.KEYCODE_DEL, 0, 0, 0, 0, KeyEvent.KEYCODE_ENDCALL);
     dispatchKeyEvent(event);
   }
 
-  @CallSuper public void input(final Emoji emoji) {
+  @Override @CallSuper public void input(final Emoji emoji) {
     if (emoji != null) {
       final int start = getSelectionStart();
       final int end = getSelectionEnd();
@@ -67,13 +72,11 @@ import com.vanniktech.emoji.emoji.Emoji;
     }
   }
 
-  /** sets the emoji size in pixels and automatically invalidates the text and renders it with the new size */
-  public final void setEmojiSize(@Px final int pixels) {
+  @Override public final void setEmojiSize(@Px final int pixels) {
     setEmojiSize(pixels, true);
   }
 
-  /** sets the emoji size in pixels and automatically invalidates the text and renders it with the new size when {@code shouldInvalidate} is true */
-  public final void setEmojiSize(@Px final int pixels, final boolean shouldInvalidate) {
+  @Override public final void setEmojiSize(@Px final int pixels, final boolean shouldInvalidate) {
     emojiSize = pixels;
 
     if (shouldInvalidate) {
@@ -81,13 +84,11 @@ import com.vanniktech.emoji.emoji.Emoji;
     }
   }
 
-  /** sets the emoji size in pixels with the provided resource and automatically invalidates the text and renders it with the new size */
-  public final void setEmojiSizeRes(@DimenRes final int res) {
+  @Override public final void setEmojiSizeRes(@DimenRes final int res) {
     setEmojiSizeRes(res, true);
   }
 
-  /** sets the emoji size in pixels with the provided resource and invalidates the text and renders it with the new size when {@code shouldInvalidate} is true */
-  public final void setEmojiSizeRes(@DimenRes final int res, final boolean shouldInvalidate) {
+  @Override public final void setEmojiSizeRes(@DimenRes final int res, final boolean shouldInvalidate) {
     setEmojiSize(getResources().getDimensionPixelSize(res), shouldInvalidate);
   }
 }
