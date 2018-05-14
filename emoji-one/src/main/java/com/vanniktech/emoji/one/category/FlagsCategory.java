@@ -123,7 +123,6 @@ public final class FlagsCategory implements EmojiCategory {
             new EmojiOne(new int[]{0x1F1EE, 0x1F1E8}, 2, 32),
             new EmojiOne(new int[]{0x1F1EE, 0x1F1E9}, 2, 33),
             new EmojiOne(new int[]{0x1F1EE, 0x1F1EA}, 2, 34),
-            new EmojiOne(new int[]{0x1F1EE, 0x1F1F1}, 2, 35),
             new EmojiOne(new int[]{0x1F1EE, 0x1F1F2}, 2, 36),
             new EmojiOne(new int[]{0x1F1EE, 0x1F1F3}, 2, 37),
             new EmojiOne(new int[]{0x1F1EE, 0x1F1F4}, 2, 38),

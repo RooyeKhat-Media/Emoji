@@ -41,8 +41,6 @@ public final class SymbolsCategory implements EmojiCategory {
             new EmojiOne(0x1F51C, 27, 30),
             new EmojiOne(0x1F51D, 27, 31),
             new EmojiOne(0x1F6D0, 37, 5),
-            new EmojiOne(0x1F54E, 28, 17),
-            new EmojiOne(0x1F52F, 27, 49),
             new EmojiOne(0x2648, 47, 44),
             new EmojiOne(0x2649, 47, 45),
             new EmojiOne(0x264A, 47, 46),
