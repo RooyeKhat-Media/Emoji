@@ -39,13 +39,13 @@ import java.util.concurrent.TimeUnit;
 
   public EmojiView(final Context context, final OnEmojiClickListener onEmojiClickListener,
             final OnEmojiLongClickListener onEmojiLongClickListener, @NonNull final RecentEmoji recentEmoji,
-            @NonNull final VariantEmoji variantManager) {
+            @NonNull final VariantEmoji variantManager,int color) {
     super(context);
 
     View.inflate(context, R.layout.emoji_view, this);
 
     setOrientation(VERTICAL);
-    setBackgroundColor(ContextCompat.getColor(context, R.color.emoji_background));
+    setBackgroundColor(color);
 
     themeIconColor = ContextCompat.getColor(context, R.color.emoji_icons);
     final TypedValue value = new TypedValue();
