@@ -30,7 +30,7 @@ public final class EmojiPopup {
 
   final View rootView;
   final Activity context;
-  private int color;
+  private int  backgroundColor,iconColor,dividerColor;
 
   @NonNull final RecentEmoji recentEmoji;
   @NonNull final VariantEmoji variantEmoji;
@@ -85,13 +85,15 @@ public final class EmojiPopup {
   };
 
   public EmojiPopup(@NonNull final View rootView, @NonNull final EmojiEditText emojiEditText,
-             @Nullable final RecentEmoji recent, @Nullable final VariantEmoji variant, int color) {
+             @Nullable final RecentEmoji recent, @Nullable final VariantEmoji variant,  int backgroundColor, int iconColor,int dividerColor) {
     this.context = Utils.asActivity(rootView.getContext());
     this.rootView = rootView.getRootView();
     this.emojiEditText = emojiEditText;
     this.recentEmoji = recent != null ? recent : new RecentEmojiManager(context);
     this.variantEmoji = variant != null ? variant : new VariantEmojiManager(context);
-    this.color = color;
+    this.backgroundColor=backgroundColor;
+    this.iconColor=iconColor;
+    this.dividerColor=dividerColor;
 
     popupWindow = new PopupWindow(context);
 
@@ -119,7 +121,7 @@ public final class EmojiPopup {
 
     variantPopup = new EmojiVariantPopup(this.rootView, clickListener);
 
-    final EmojiView emojiView = new EmojiView(context, clickListener, longClickListener, recentEmoji, variantEmoji, color);
+    final EmojiView emojiView = new EmojiView(context, clickListener, longClickListener, recentEmoji, variantEmoji,backgroundColor,iconColor,dividerColor);
     emojiView.setOnEmojiBackspaceClickListener(new OnEmojiBackspaceClickListener() {
       @Override public void onEmojiBackspaceClick(final View v) {
         emojiEditText.backspace();
@@ -201,7 +203,9 @@ public final class EmojiPopup {
 
   public static final class Builder {
     @NonNull private final View rootView;
-    @NonNull private int color;
+    @Nullable private int backgroundColor;
+    @Nullable private int iconColor;
+    @Nullable private int dividerColor;
     @Nullable private OnEmojiPopupShownListener onEmojiPopupShownListener;
     @Nullable private OnSoftKeyboardCloseListener onSoftKeyboardCloseListener;
     @Nullable private OnSoftKeyboardOpenListener onSoftKeyboardOpenListener;
@@ -276,8 +280,18 @@ public final class EmojiPopup {
       return this;
     }
 
-    @CheckResult public Builder setColor(final int color) {
-      this.color = color;
+    @CheckResult public Builder setBackgroundColor(final int backgroundColor) {
+      this.backgroundColor = backgroundColor;
+      return this;
+    }
+
+    @CheckResult public Builder setIconColor(final int iconColor) {
+      this.iconColor = iconColor;
+      return this;
+    }
+
+    @CheckResult public Builder setDividerColor(final int dividerColor) {
+      this.dividerColor = dividerColor;
       return this;
     }
 
@@ -285,14 +299,16 @@ public final class EmojiPopup {
       EmojiManager.getInstance().verifyInstalled();
       checkNotNull(emojiEditText, "EmojiEditText can't be null");
 
-      final EmojiPopup emojiPopup = new EmojiPopup(rootView, emojiEditText, recentEmoji, variantEmoji, color);
+      final EmojiPopup emojiPopup = new EmojiPopup(rootView, emojiEditText, recentEmoji, variantEmoji, backgroundColor,iconColor,dividerColor);
       emojiPopup.onSoftKeyboardCloseListener = onSoftKeyboardCloseListener;
       emojiPopup.onEmojiClickListener = onEmojiClickListener;
       emojiPopup.onSoftKeyboardOpenListener = onSoftKeyboardOpenListener;
       emojiPopup.onEmojiPopupShownListener = onEmojiPopupShownListener;
       emojiPopup.onEmojiPopupDismissListener = onEmojiPopupDismissListener;
       emojiPopup.onEmojiBackspaceClickListener = onEmojiBackspaceClickListener;
-      emojiPopup.color = color;
+      emojiPopup.backgroundColor = backgroundColor;
+      emojiPopup.iconColor=iconColor;
+      emojiPopup.dividerColor=dividerColor;
       return emojiPopup;
     }
   }

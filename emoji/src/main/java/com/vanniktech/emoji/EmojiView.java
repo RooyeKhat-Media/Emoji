@@ -39,20 +39,23 @@ import java.util.concurrent.TimeUnit;
 
   EmojiView(final Context context, final OnEmojiClickListener onEmojiClickListener,
             final OnEmojiLongClickListener onEmojiLongClickListener, @NonNull final RecentEmoji recentEmoji,
-            @NonNull final VariantEmoji variantManager, int color) {
+            @NonNull final VariantEmoji variantManager, int backgroundColor, int iconColor, int dividerColor) {
     super(context);
 
     View.inflate(context, R.layout.emoji_view, this);
 
     setOrientation(VERTICAL);
-    setBackgroundColor(color);
+    setBackgroundColor(backgroundColor);
 
-    themeIconColor = ContextCompat.getColor(context, R.color.emoji_icons);
+    themeIconColor = iconColor;
     final TypedValue value = new TypedValue();
     context.getTheme().resolveAttribute(R.attr.colorAccent, value, true);
     themeAccentColor = value.data;
 
     final ViewPager emojisPager = findViewById(R.id.emojis_pager);
+    final View emojiDivider = findViewById(R.id.emoji_divider);
+    emojiDivider.setBackgroundColor(dividerColor);
+
     final LinearLayout emojisTab = findViewById(R.id.emojis_tab);
     emojisPager.addOnPageChangeListener(this);
 
