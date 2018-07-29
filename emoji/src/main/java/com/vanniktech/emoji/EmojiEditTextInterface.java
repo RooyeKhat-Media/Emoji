@@ -1,5 +1,6 @@
 package com.vanniktech.emoji;
 
+
 import android.support.annotation.DimenRes;
 import android.support.annotation.Px;
 import com.vanniktech.emoji.emoji.Emoji;
