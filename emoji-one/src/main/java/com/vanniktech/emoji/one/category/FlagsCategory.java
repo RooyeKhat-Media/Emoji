@@ -14,7 +14,7 @@ import com.vanniktech.emoji.one.R;
     new EmojiOne(0x1F38C, 8, 31),
     new EmojiOne(0x1F3F4, 12, 19),
     new EmojiOne(new int[] { 0x1F3F3, 0xFE0F }, 12, 15),
-    new EmojiOne(new int[] { 0x1F3F3, 0xFE0F, 0x200D, 0x1F308 }, 12, 14),
+  //  new EmojiOne(new int[] { 0x1F3F3, 0xFE0F, 0x200D, 0x1F308 }, 12, 14),
     new EmojiOne(new int[] { 0x1F1E6, 0x1F1E8 }, 0, 31),
     new EmojiOne(new int[] { 0x1F1E6, 0x1F1E9 }, 0, 32),
     new EmojiOne(new int[] { 0x1F1E6, 0x1F1EA }, 0, 33),
@@ -123,7 +123,7 @@ import com.vanniktech.emoji.one.R;
     new EmojiOne(new int[] { 0x1F1EE, 0x1F1E8 }, 2, 32),
     new EmojiOne(new int[] { 0x1F1EE, 0x1F1E9 }, 2, 33),
     new EmojiOne(new int[] { 0x1F1EE, 0x1F1EA }, 2, 34),
-    new EmojiOne(new int[] { 0x1F1EE, 0x1F1F1 }, 2, 35),
+   /* new EmojiOne(new int[] { 0x1F1EE, 0x1F1F1 }, 2, 35),*/
     new EmojiOne(new int[] { 0x1F1EE, 0x1F1F2 }, 2, 36),
     new EmojiOne(new int[] { 0x1F1EE, 0x1F1F3 }, 2, 37),
     new EmojiOne(new int[] { 0x1F1EE, 0x1F1F4 }, 2, 38),

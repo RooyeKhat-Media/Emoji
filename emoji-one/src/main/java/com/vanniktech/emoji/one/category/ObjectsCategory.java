@@ -27,7 +27,7 @@ import com.vanniktech.emoji.one.EmojiOne;
     new EmojiOne(0x1F3A7, 9, 1),
     new EmojiOne(0x1F4FB, 26, 50),
     new EmojiOne(0x1F3B7, 9, 17),
-    new EmojiOne(0x1F3B8, 9, 18),
+    //new EmojiOne(0x1F3B8, 9, 18),
     new EmojiOne(0x1F3B9, 9, 19),
     new EmojiOne(0x1F3BA, 9, 20),
     new EmojiOne(0x1F3BB, 9, 21),
