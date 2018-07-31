@@ -352,9 +352,6 @@ public final class EmojiPopup {
             emojiPopup.onEmojiPopupShownListener = onEmojiPopupShownListener;
             emojiPopup.onEmojiPopupDismissListener = onEmojiPopupDismissListener;
             emojiPopup.onEmojiBackspaceClickListener = onEmojiBackspaceClickListener;
-            emojiPopup.backgroundColor = backgroundColor;
-            emojiPopup.iconColor = iconColor;
-            emojiPopup.dividerColor = dividerColor;
             return emojiPopup;
         }
     }

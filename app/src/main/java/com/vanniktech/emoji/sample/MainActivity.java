@@ -137,6 +137,10 @@ import com.vanniktech.emoji.twitter.TwitterEmojiProvider;
         .setOnSoftKeyboardOpenListener(ignore -> Log.d(TAG, "Opened soft keyboard"))
         .setOnEmojiPopupDismissListener(() -> emojiButton.setImageResource(R.drawable.emoji_ios_category_smileysandpeople))
         .setOnSoftKeyboardCloseListener(() -> Log.d(TAG, "Closed soft keyboard"))
+            .setIconColor(Color.parseColor("#ffffff"))
+            .setBackgroundColor(Color.parseColor("#81C784"))
+            .setDividerColor(Color.parseColor("#ffffff"))
+
         .build(editText);
   }
 }
